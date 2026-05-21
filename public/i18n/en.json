@@ -1,0 +1,58 @@
+{
+  "app": {
+    "title": "TAXO",
+    "tagline": "Transparent fare estimates for Italian taxis"
+  },
+  "city": {
+    "label": "City",
+    "select_placeholder": "Select a city"
+  },
+  "mode": {
+    "fixed": "Flat fare",
+    "meter": "Meter estimate",
+    "live": "Live GPS"
+  },
+  "fixed": {
+    "route_label": "Predetermined route",
+    "official_price": "Official flat fare",
+    "includes_all": "Includes all applicable surcharges",
+    "warning_title": "Ask for \"tariffa fissa\" BEFORE getting in",
+    "warning_body": "The driver must not turn on the meter for this route. If they refuse, take note and report."
+  },
+  "meter": {
+    "from": "From",
+    "to": "To",
+    "calculate": "Estimate fare",
+    "fare_band": "Time band",
+    "weekday_day": "Weekday daytime (06–22)",
+    "weekday_night": "Night (22–06)",
+    "holiday_day": "Holiday daytime (06–22)",
+    "supplements": "Extras",
+    "estimated_range": "Estimated fare (range)",
+    "breakdown": "Breakdown"
+  },
+  "live": {
+    "start": "Start trip",
+    "stop": "End trip",
+    "comparing": "Comparing with optimal route...",
+    "detected_detour": "The route taken appears longer than optimal",
+    "no_detour": "Route consistent with optimal routing"
+  },
+  "supplements": {
+    "luggage": "Extra luggage",
+    "radio": "Radio taxi call",
+    "pet": "Pet",
+    "minivan": "Minivan / 5+ passengers"
+  },
+  "disclaimer": {
+    "estimate": "Indicative estimate, does not replace the official meter.",
+    "source_prefix": "Source:",
+    "report_abuse": "Report abuse"
+  },
+  "complaint": {
+    "title": "Charged more than expected?",
+    "license_plate": "License number (CP on door)",
+    "amount_paid": "Amount requested",
+    "send_email": "Send complaint to municipality"
+  }
+}

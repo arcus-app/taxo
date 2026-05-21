@@ -1,0 +1,282 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-05-21T00:00:00Z",
+  "cities": {
+    "roma": {
+      "name": "Roma",
+      "country": "IT",
+      "timezone": "Europe/Rome",
+      "currency": "EUR",
+      "complaint_email": "ufficio.taxi@comune.roma.it",
+      "complaint_phone": "060606",
+      "license_plate_format": "CP NNNN",
+      "active_tariff_version": "2024-01",
+      "tariff_versions": [
+        {
+          "version": "2024-01",
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "source": {
+            "title": "Delibera Giunta Capitolina n. 151/2012 e successivi aggiornamenti",
+            "url": "https://romamobilita.it/muoversi-a-roma/taxi/",
+            "retrieved_on": "2026-05-21"
+          },
+          "base_fare": { "weekday_day": 3.50, "weekday_night": 7.50, "holiday_day": 5.00 },
+          "per_km": {
+            "tiers": [
+              { "up_to_cumulative_eur": 11.00, "rate_per_km": 1.14 },
+              { "up_to_cumulative_eur": 24.00, "rate_per_km": 1.36 },
+              { "up_to_cumulative_eur": null,  "rate_per_km": 1.65 }
+            ]
+          },
+          "per_hour_under_threshold": { "rate_per_hour": 27.00, "speed_threshold_kmh": 20 },
+          "fixed_routes": [
+            {
+              "id": "fco-mura",
+              "name": { "it": "Fiumicino ↔ Mura Aureliane", "en": "Fiumicino ↔ Aurelian Walls" },
+              "price_eur": 50.00,
+              "max_passengers": 4,
+              "includes_supplements": ["luggage", "night", "holiday", "airport"],
+              "applies_when": { "direct_route_only": true, "must_request_before_boarding": true },
+              "notes": { "it": "Tariffa valida nei due sensi. Solo taxi di Roma. Taxi del Comune di Fiumicino applicano 60€." }
+            },
+            {
+              "id": "cia-mura",
+              "name": { "it": "Ciampino ↔ Mura Aureliane", "en": "Ciampino ↔ Aurelian Walls" },
+              "price_eur": 40.00,
+              "max_passengers": 4,
+              "includes_supplements": ["luggage", "night", "holiday", "airport"],
+              "applies_when": { "direct_route_only": true, "must_request_before_boarding": true }
+            }
+          ],
+          "max_capped_routes": [
+            {
+              "id": "fco-gra",
+              "name": { "it": "Fiumicino ↔ entro GRA", "en": "Fiumicino ↔ within GRA (cap)" },
+              "price_cap_eur": 70.00
+            }
+          ],
+          "supplements": [
+            { "id": "luggage_extra", "amount_eur": 1.00, "unit": "per_item", "first_free": 1, "label": { "it": "Bagaglio extra (oltre il primo)" } },
+            { "id": "radio_call",    "amount_eur": 4.00, "unit": "per_call",  "label": { "it": "Chiamata radio taxi" } },
+            { "id": "pet",           "amount_eur": 1.00, "unit": "per_trip",  "label": { "it": "Animale domestico" } }
+          ],
+          "notes": ["Tariffa progressiva basata su scatti cumulativi T1/T2/T3", "Le tariffe fisse aeroportuali bypassano completamente il tassametro"]
+        }
+      ]
+    },
+    "milano": {
+      "name": "Milano",
+      "country": "IT",
+      "complaint_email": "taxi@comune.milano.it",
+      "complaint_phone": "020202",
+      "active_tariff_version": "2024-07",
+      "tariff_versions": [
+        {
+          "version": "2024-07",
+          "valid_from": "2024-07-01",
+          "valid_to": null,
+          "source": {
+            "title": "Tariffario Comune di Milano, agg. luglio 2024 + D.G.R. Lombardia XII/4445/2025 (aeroporti)",
+            "url": "https://www.comune.milano.it/servizi/trasporti-e-mobilita/taxi",
+            "retrieved_on": "2026-05-21"
+          },
+          "base_fare": { "weekday_day": 3.50, "weekday_night": 6.50, "holiday_day": 5.50 },
+          "per_km": { "flat": 1.20 },
+          "per_hour_under_threshold": { "rate_per_hour": 33.00, "speed_threshold_kmh": 20 },
+          "fixed_routes": [
+            {
+              "id": "mxp-cit",
+              "name": { "it": "Malpensa ↔ Milano città", "en": "Malpensa ↔ Milan city" },
+              "price_eur": 114.00,
+              "max_passengers": 4,
+              "includes_supplements": ["luggage", "night", "holiday", "airport", "tolls"]
+            },
+            {
+              "id": "bgy-cit",
+              "name": { "it": "Orio al Serio ↔ Milano", "en": "Bergamo Orio ↔ Milan" },
+              "price_eur": 128.00,
+              "max_passengers": 4,
+              "includes_supplements": ["luggage", "night", "holiday", "airport", "tolls"]
+            },
+            {
+              "id": "lin-rho",
+              "name": { "it": "Linate ↔ Fiera Rho", "en": "Linate ↔ Fiera Rho" },
+              "price_eur": 68.00,
+              "max_passengers": 4,
+              "includes_supplements": ["luggage", "night", "holiday", "airport"]
+            }
+          ],
+          "supplements": [
+            { "id": "luggage_extra", "amount_eur": 0.50, "unit": "per_item", "first_free": 1, "label": { "it": "Bagaglio extra" } },
+            { "id": "radio_call",    "amount_eur": 3.50, "unit": "per_call",  "label": { "it": "Chiamata radio taxi" } }
+          ],
+          "notes": ["Linate ↔ centro Milano: nessuna tariffa fissa, solo tassametro"]
+        }
+      ]
+    },
+    "napoli": {
+      "name": "Napoli",
+      "country": "IT",
+      "complaint_email": "trasporto.pubblico@comune.napoli.it",
+      "active_tariff_version": "2024-01",
+      "tariff_versions": [
+        {
+          "version": "2024-01",
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "source": {
+            "title": "Comune di Napoli — Tariffe predeterminate, agg. 2024",
+            "url": "https://www.comune.napoli.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/1193",
+            "retrieved_on": "2026-05-21"
+          },
+          "base_fare": { "weekday_day": 3.50, "weekday_night": 6.50, "holiday_day": 5.50 },
+          "per_km": { "flat": 1.10 },
+          "per_hour_under_threshold": { "rate_per_hour": 25.82, "speed_threshold_kmh": 20 },
+          "fixed_routes": [
+            {
+              "id": "nap-cen",
+              "name": { "it": "Capodichino ↔ Stazione Centrale", "en": "Capodichino ↔ Central Station" },
+              "price_eur": 21.00,
+              "includes_supplements": ["luggage", "night", "holiday", "airport", "pets"]
+            },
+            {
+              "id": "nap-mun",
+              "name": { "it": "Capodichino ↔ Piazza Municipio/Porto", "en": "Capodichino ↔ Piazza Municipio/Port" },
+              "price_eur": 24.00,
+              "includes_supplements": ["luggage", "night", "holiday", "airport", "pets"]
+            },
+            {
+              "id": "nap-mer",
+              "name": { "it": "Capodichino ↔ Mergellina", "en": "Capodichino ↔ Mergellina" },
+              "price_eur": 28.00,
+              "includes_supplements": ["luggage", "night", "holiday", "airport", "pets"]
+            },
+            {
+              "id": "nap-coll",
+              "name": { "it": "Capodichino → Centrale (taxi collettivo)", "en": "Capodichino → Central (shared taxi)" },
+              "price_eur": 6.00,
+              "per_person": true,
+              "includes_supplements": ["luggage"]
+            }
+          ],
+          "supplements": [
+            { "id": "luggage_extra", "amount_eur": 0.50, "unit": "per_item", "first_free": 1, "label": { "it": "Bagaglio extra" } },
+            { "id": "minivan",       "amount_eur": 5.00, "unit": "per_trip", "label": { "it": "Minivan / 5+ passeggeri" } }
+          ],
+          "notes": ["Tariffe predeterminate H24, comprensive di TUTTI i supplementi (notte, festivo, bagagli, animali)"]
+        }
+      ]
+    },
+    "torino": {
+      "name": "Torino",
+      "country": "IT",
+      "active_tariff_version": "2024-01",
+      "tariff_versions": [
+        {
+          "version": "2024-01",
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "source": {
+            "title": "Comune di Torino — Tariffe taxi metropolitane",
+            "url": "http://taxitorino.blogspot.com/p/tariffe-metropolitane.html",
+            "retrieved_on": "2026-05-21"
+          },
+          "base_fare": { "weekday_day": 3.50, "weekday_night": 6.50, "holiday_day": 5.50 },
+          "per_km": {
+            "tiers": [
+              { "up_to_cumulative_eur": 8.00,  "rate_per_km": 1.44 },
+              { "up_to_cumulative_eur": 13.00, "rate_per_km": 1.05 },
+              { "up_to_cumulative_eur": null,  "rate_per_km": 1.27 }
+            ]
+          },
+          "per_hour_under_threshold": { "rate_per_hour": 28.00, "speed_threshold_kmh": 20 },
+          "fixed_routes": [],
+          "max_capped_routes": [
+            {
+              "id": "trn-ztl",
+              "name": { "it": "Caselle ↔ ZTL Torino centro", "en": "Caselle ↔ Turin ZTL (cap)" },
+              "price_cap_eur": 34.00
+            },
+            {
+              "id": "trn-osp",
+              "name": { "it": "Caselle ↔ Lingotto/Ospedali", "en": "Caselle ↔ Lingotto/Hospitals (cap)" },
+              "price_cap_eur": 39.00
+            }
+          ],
+          "supplements": [
+            { "id": "luggage_extra", "amount_eur": 0.50, "unit": "per_item", "first_free": 1, "label": { "it": "Bagaglio >55x40x20" } }
+          ],
+          "notes": ["Le tariffe aeroportuali sono tetti massimi, non fisse: paghi il minimo tra tassametro e cap"]
+        }
+      ]
+    },
+    "firenze": {
+      "name": "Firenze",
+      "country": "IT",
+      "active_tariff_version": "2024-05",
+      "tariff_versions": [
+        {
+          "version": "2024-05",
+          "valid_from": "2024-05-01",
+          "valid_to": null,
+          "source": {
+            "title": "Comune di Firenze — Tariffario taxi e Comuni limitrofi, agg. 01/05/2024",
+            "url": "https://servizi.comune.fi.it/sites/www.comune.fi.it/files/all._3_tariffe_fase_2-16052023_df.pdf",
+            "retrieved_on": "2026-05-21"
+          },
+          "base_fare": { "weekday_day": 3.30, "weekday_night": 6.60, "holiday_day": 5.30 },
+          "per_km": { "flat": 1.00 },
+          "per_hour_under_threshold": { "rate_per_hour": 25.00, "speed_threshold_kmh": 20 },
+          "fixed_routes": [
+            {
+              "id": "flr-cen",
+              "name": { "it": "Peretola ↔ Centro Firenze", "en": "Peretola ↔ Florence centre" },
+              "price_eur": 24.00,
+              "includes_supplements": ["luggage", "airport"],
+              "notes": { "it": "Tariffa diurna feriale; supplementi notturni e festivi aggiuntivi — VERIFICARE" }
+            }
+          ],
+          "supplements": [
+            { "id": "luggage_extra", "amount_eur": 1.00, "unit": "per_item", "first_free": 1, "label": { "it": "Bagaglio extra" } },
+            { "id": "radio_call",    "amount_eur": 2.40, "unit": "per_call",  "label": { "it": "Chiamata radio taxi" } }
+          ],
+          "notes": ["DATI DA VALIDARE — verificare delibera 2024 ufficiale prima del rilascio v1"]
+        }
+      ]
+    },
+    "bologna": {
+      "name": "Bologna",
+      "country": "IT",
+      "active_tariff_version": "2024-01",
+      "tariff_versions": [
+        {
+          "version": "2024-01",
+          "valid_from": "2024-01-01",
+          "valid_to": null,
+          "source": {
+            "title": "Comune di Bologna — Regolamento taxi (da verificare)",
+            "url": "https://www.comune.bologna.it/",
+            "retrieved_on": "2026-05-21"
+          },
+          "base_fare": { "weekday_day": 4.50, "weekday_night": 7.50, "holiday_day": 6.00 },
+          "per_km": { "flat": 1.10 },
+          "per_hour_under_threshold": { "rate_per_hour": 25.00, "speed_threshold_kmh": 20 },
+          "fixed_routes": [
+            {
+              "id": "blq-cen",
+              "name": { "it": "Marconi ↔ Stazione Centrale", "en": "Marconi ↔ Central Station" },
+              "price_eur": 18.00,
+              "includes_supplements": ["luggage"],
+              "notes": { "it": "DATI INDICATIVI — da verificare con delibera ufficiale" }
+            }
+          ],
+          "supplements": [
+            { "id": "luggage_extra", "amount_eur": 0.50, "unit": "per_item", "first_free": 1, "label": { "it": "Bagaglio extra" } }
+          ],
+          "notes": ["DATI DA VALIDARE — Bologna è la città con dati pubblici online più scarsi, va recuperata la delibera comunale ufficiale"]
+        }
+      ]
+    }
+  }
+}

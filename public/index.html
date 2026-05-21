@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1f2937">
+  <link rel="manifest" href="manifest.json">
+  <title>TAXO</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="hdr">
+    <h1 data-i18n="app.title">TAXO</h1>
+    <select id="lang" aria-label="Lingua">
+      <option value="it">IT</option>
+      <option value="en">EN</option>
+    </select>
+  </header>
+
+  <main class="app">
+    <section class="card">
+      <label data-i18n="city.label">Città</label>
+      <select id="city"></select>
+    </section>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-mode="fixed" data-i18n="mode.fixed">Tariffa fissa</button>
+      <button class="tab"        data-mode="meter" data-i18n="mode.meter">Tassametro</button>
+      <button class="tab"        data-mode="live"  data-i18n="mode.live">GPS live</button>
+    </nav>
+
+    <section id="panel-fixed" class="panel"></section>
+    <section id="panel-meter" class="panel" hidden></section>
+    <section id="panel-live"  class="panel" hidden></section>
+
+    <footer class="src" id="src"></footer>
+    <p class="disclaimer" data-i18n="disclaimer.estimate">Stima indicativa, non sostituisce il tassametro ufficiale.</p>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tassametro-civico.it/schema/tariffs.schema.json",
+  "title": "Tassametro Civico — Schema tariffe taxi",
+  "description": "Schema dei dati tariffari taxi per le città italiane coperte. Ogni voce è autocontenuta e versionata.",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "cities"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Versione semver dello schema"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "cities": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z_]+$": { "$ref": "#/$defs/city" }
+      }
+    }
+  },
+  "$defs": {
+    "city": {
+      "type": "object",
+      "required": ["name", "country", "active_tariff_version", "tariff_versions"],
+      "properties": {
+        "name": { "type": "string" },
+        "country": { "type": "string", "enum": ["IT"] },
+        "timezone": { "type": "string", "default": "Europe/Rome" },
+        "currency": { "type": "string", "default": "EUR" },
+        "complaint_email": { "type": "string", "format": "email" },
+        "complaint_phone": { "type": "string" },
+        "license_plate_format": { "type": "string", "description": "Es. 'CP NNNN' per il numero corso pubblico sulla portiera" },
+        "active_tariff_version": { "type": "string" },
+        "tariff_versions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/tariff_version" },
+          "minItems": 1
+        }
+      }
+    },
+    "tariff_version": {
+      "type": "object",
+      "required": ["version", "valid_from", "source", "base_fare", "per_km", "fixed_routes", "supplements"],
+      "properties": {
+        "version": { "type": "string" },
+        "valid_from": { "type": "string", "format": "date" },
+        "valid_to": { "type": ["string", "null"], "format": "date" },
+        "source": { "$ref": "#/$defs/source" },
+        "base_fare": { "$ref": "#/$defs/base_fare" },
+        "per_km": { "$ref": "#/$defs/per_km" },
+        "per_hour_under_threshold": { "$ref": "#/$defs/per_hour" },
+        "fixed_routes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/fixed_route" }
+        },
+        "supplements": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/supplement" }
+        },
+        "max_capped_routes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/max_capped_route" },
+          "description": "Es. Roma: tassametro entro GRA con tetto a €70 per Fiumicino"
+        },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["title", "url"],
+      "properties": {
+        "title": { "type": "string", "description": "Es. 'Delibera Giunta Capitolina n. 151/2012'" },
+        "url": { "type": "string", "format": "uri" },
+        "approved_on": { "type": "string", "format": "date" },
+        "retrieved_on": { "type": "string", "format": "date" }
+      }
+    },
+    "base_fare": {
+      "type": "object",
+      "description": "Scatto iniziale (bandiera) per fascia oraria",
+      "required": ["weekday_day", "weekday_night", "holiday_day"],
+      "properties": {
+        "weekday_day": { "type": "number", "description": "Lun-ven 06:00-22:00" },
+        "weekday_night": { "type": "number", "description": "Notturno 22:00-06:00 ogni giorno" },
+        "holiday_day": { "type": "number", "description": "Festivi 06:00-22:00" }
+      }
+    },
+    "per_km": {
+      "type": "object",
+      "description": "Tariffa chilometrica, opzionalmente progressiva",
+      "oneOf": [
+        {
+          "required": ["flat"],
+          "properties": {
+            "flat": { "type": "number", "description": "€/km costante" }
+          }
+        },
+        {
+          "required": ["tiers"],
+          "properties": {
+            "tiers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["up_to_cumulative_eur", "rate_per_km"],
+                "properties": {
+                  "up_to_cumulative_eur": { "type": ["number", "null"], "description": "null = ultima fascia" },
+                  "rate_per_km": { "type": "number" }
+                }
+              },
+              "minItems": 1
+            }
+          }
+        }
+      ]
+    },
+    "per_hour": {
+      "type": "object",
+      "required": ["rate_per_hour", "speed_threshold_kmh"],
+      "properties": {
+        "rate_per_hour": { "type": "number" },
+        "speed_threshold_kmh": { "type": "number", "description": "Sotto questa velocità media scatta tariffa oraria" }
+      }
+    },
+    "fixed_route": {
+      "type": "object",
+      "required": ["id", "name", "price_eur", "includes_supplements"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9_-]+$" },
+        "name": { "type": "object", "description": "Localizzato per lingua", "patternProperties": { "^[a-z]{2}$": { "type": "string" } } },
+        "endpoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "geofence_polygon": { "type": "array", "items": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 } }
+            }
+          }
+        },
+        "price_eur": { "type": "number", "description": "0 = tariffa fissa non applicabile, usa tassametro" },
+        "max_passengers": { "type": "integer", "default": 4 },
+        "includes_supplements": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["luggage", "night", "holiday", "radio", "airport", "pets", "tolls"] }
+        },
+        "per_person": { "type": "boolean", "default": false, "description": "true per taxi collettivi (Napoli)" },
+        "applies_when": {
+          "type": "object",
+          "properties": {
+            "direct_route_only": { "type": "boolean", "default": true },
+            "must_request_before_boarding": { "type": "boolean", "default": true }
+          }
+        },
+        "notes": { "type": "object", "patternProperties": { "^[a-z]{2}$": { "type": "string" } } }
+      }
+    },
+    "max_capped_route": {
+      "type": "object",
+      "required": ["id", "name", "price_cap_eur"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "object", "patternProperties": { "^[a-z]{2}$": { "type": "string" } } },
+        "price_cap_eur": { "type": "number", "description": "Tetto massimo: paghi il minimo tra tassametro e questo" }
+      }
+    },
+    "supplement": {
+      "type": "object",
+      "required": ["id", "amount_eur"],
+      "properties": {
+        "id": { "type": "string", "enum": ["luggage_extra", "radio_call", "pet", "minivan", "snow_chains", "child_seat"] },
+        "amount_eur": { "type": "number" },
+        "unit": { "type": "string", "enum": ["per_item", "per_call", "per_trip"], "default": "per_trip" },
+        "first_free": { "type": "integer", "default": 0, "description": "Bagagli: il primo di solito è gratis" },
+        "label": { "type": "object", "patternProperties": { "^[a-z]{2}$": { "type": "string" } } }
+      }
+    }
+  }
+}

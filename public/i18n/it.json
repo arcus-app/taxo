@@ -1,0 +1,58 @@
+{
+  "app": {
+    "title": "TAXO",
+    "tagline": "Stima trasparente della corsa in taxi"
+  },
+  "city": {
+    "label": "Città",
+    "select_placeholder": "Seleziona una città"
+  },
+  "mode": {
+    "fixed": "Tariffa fissa",
+    "meter": "Tassametro",
+    "live": "GPS live"
+  },
+  "fixed": {
+    "route_label": "Tratta predeterminata",
+    "official_price": "Tariffa ufficiale fissa",
+    "includes_all": "Comprensivo di tutti i supplementi previsti",
+    "warning_title": "Chiedi «tariffa fissa» PRIMA di salire",
+    "warning_body": "Il tassista non deve attivare il tassametro per questa tratta. Se rifiuta, prendine nota e segnala."
+  },
+  "meter": {
+    "from": "Partenza",
+    "to": "Destinazione",
+    "calculate": "Calcola stima",
+    "fare_band": "Fascia oraria",
+    "weekday_day": "Feriale diurno (06–22)",
+    "weekday_night": "Notturno (22–06)",
+    "holiday_day": "Festivo diurno (06–22)",
+    "supplements": "Supplementi",
+    "estimated_range": "Costo stimato (intervallo)",
+    "breakdown": "Dettaglio"
+  },
+  "live": {
+    "start": "Inizia corsa",
+    "stop": "Termina corsa",
+    "comparing": "Confronto con percorso ottimale...",
+    "detected_detour": "Possibile percorso più lungo del necessario",
+    "no_detour": "Percorso coerente con il routing ottimale"
+  },
+  "supplements": {
+    "luggage": "Bagagli aggiuntivi",
+    "radio": "Chiamata radio taxi",
+    "pet": "Animale domestico",
+    "minivan": "Minivan / 5+ passeggeri"
+  },
+  "disclaimer": {
+    "estimate": "Stima indicativa, non sostituisce il tassametro ufficiale.",
+    "source_prefix": "Fonte:",
+    "report_abuse": "Segnala abuso"
+  },
+  "complaint": {
+    "title": "Hai pagato più del dovuto?",
+    "license_plate": "Numero licenza (CP sulla portiera)",
+    "amount_paid": "Importo richiesto",
+    "send_email": "Invia segnalazione al Comune"
+  }
+}
