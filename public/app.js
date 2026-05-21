@@ -46,6 +46,7 @@ function t(key) {
 
 function applyI18n() {
   document.querySelectorAll("[data-i18n]").forEach(el => {
+    if (el.querySelector("img")) return;
     el.textContent = t(el.dataset.i18n);
   });
   document.documentElement.lang = state.lang;
