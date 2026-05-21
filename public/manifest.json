@@ -1,6 +1,6 @@
 {
   "name": "TAXO",
-  "short_name": "Tassametro Civico",
+  "short_name": "TAXO",
   "description": "Stima trasparente del costo di una corsa in taxi nelle città italiane",
   "start_url": "./index.html",
   "display": "standalone",
