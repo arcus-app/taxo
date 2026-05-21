@@ -50,4 +50,4 @@ select, input { width: 100%; padding: 0.6rem 0.7rem; border: 0.5px solid var(--b
 button.primary { background: var(--info-text); color: white; border: 0; padding: 0.75rem; border-radius: 8px; width: 100%; font-size: 14px; font-weight: 500; cursor: pointer; }
 .info-icon { color: var(--info-text); cursor: help; font-size: 12px; opacity: 0.7; }
 .hdr h1 { display: flex; align-items: center; }
-.logo { height: 28px; width: 28px; display: block; }
+.logo { height: 36px; width: 36px; display: block; }
